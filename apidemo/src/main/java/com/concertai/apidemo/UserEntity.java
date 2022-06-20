@@ -2,11 +2,17 @@ package com.concertai.apidemo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Users")
 public class UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "username", nullable = false)
     private String username;
     @Column(name = "email", nullable = false)
@@ -21,6 +27,14 @@ public class UserEntity {
         this.email = email;
         this.isactive = isactive;
         this.role = role;
+    }
+
+    public Integer getUserId() {
+        return id;
+    }
+
+    public void setUserId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
