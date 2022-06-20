@@ -22,6 +22,9 @@ public class UserEntity {
     @Column(name = "role", nullable = false)
     private String role;
 
+    public UserEntity() {
+    }
+
     public UserEntity(String username, String email, boolean isactive, String role) {
         this.username = username;
         this.email = email;
