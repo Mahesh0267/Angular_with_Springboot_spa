@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <button type="button" class="btn btn-info add-new">
+          <button type="button" class="btn btn-info add-new" type="button"(click)="addUserPopUp('')">
             <i class="fa fa-plus"></i> Add User
           </button>
         </div>
@@ -39,15 +39,10 @@
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
           <td>
-            <a class="add" title="Add" data-toggle="tooltip"
-              ><i class="material-icons"></i></a
-            >
-            <a class="edit" title="Edit" data-toggle="tooltip"
-              ><i class="material-icons"></i></a
-            >
-            <a class="delete" title="Delete" data-toggle="tooltip"
-              ><i class="material-icons"></i></a
-            >
+            <div class="buttons">
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+         </div> 
           </td>
         </tr>
       </tbody>

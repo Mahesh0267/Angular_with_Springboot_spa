@@ -16,7 +16,11 @@ export class UsersService {
   get(username: string): Observable<any> {
     return this.http.get(`${rootUrl + '/get-user'}/${username}`);
   }
-  findByName(username: string): Observable<any> {
-    return this.http.get(`${rootUrl}?title=${username}`);
+  // /delete-user/{id}
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${rootUrl + '/delete-user'}/${id}`);
+  }
+  create(data: {}): Observable<any> {
+    return this.http.post(rootUrl, data);
   }
 }

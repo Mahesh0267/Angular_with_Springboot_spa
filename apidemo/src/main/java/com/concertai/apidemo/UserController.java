@@ -36,6 +36,7 @@ public class UserController {
         return userEntity;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/create-user")
     public UserEntity createUser(@RequestBody UserEntity userEntity) {
 
@@ -44,6 +45,7 @@ public class UserController {
         return savedUser;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/update-users/{id}")
     public ResponseEntity<UserEntity> updateUser(@PathVariable(value = "id") Integer userId,
             @RequestBody UserEntity userDetails) {
@@ -55,6 +57,7 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/delete-user/{id}")
     public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Integer userId) {
         UserEntity user = userRespository.findById(userId).get();
