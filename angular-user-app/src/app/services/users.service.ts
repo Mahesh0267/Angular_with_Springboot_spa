@@ -14,6 +14,9 @@ export class UsersService {
     return this.http.get(rootUrl + '/get-all-users');
   }
   get(username: string): Observable<any> {
-    return this.get(`${rootUrl}/${username}`);
+    return this.http.get(`${rootUrl + '/get-user'}/${username}`);
+  }
+  findByName(username: string): Observable<any> {
+    return this.http.get(`${rootUrl}?title=${username}`);
   }
 }

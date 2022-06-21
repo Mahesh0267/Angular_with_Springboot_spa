@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ListUsersComponent implements OnInit {
   users: any;
+  username = '';
 
   constructor(private usersService: UsersService) {}
 
@@ -20,6 +21,17 @@ export class ListUsersComponent implements OnInit {
         this.users = data;
         console.log(data);
         console.log(typeof data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  searchUser(): void {
+    this.usersService.get(this.username).subscribe(
+      (data) => {
+        this.users = data;
+        console.log(data);
       },
       (error) => {
         console.log(error);

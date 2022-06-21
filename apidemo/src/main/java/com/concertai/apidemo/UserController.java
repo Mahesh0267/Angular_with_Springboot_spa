@@ -29,6 +29,7 @@ public class UserController {
         return allUserlist;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/get-user/{username}")
     public List<UserEntity> getUserbyname(@PathVariable(value = "username") String username) {
         List<UserEntity> userEntity = userRespository.findByUsername(username);
