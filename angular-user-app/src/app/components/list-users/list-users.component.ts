@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import {
   MatDialog,
@@ -7,6 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { AddUsersComponent } from '../add-users/add-users.component';
 import { Observable } from 'rxjs';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
   selector: 'app-list-users',
@@ -16,7 +17,7 @@ import { Observable } from 'rxjs';
 export class ListUsersComponent implements OnInit {
   users: any;
   username = '';
-  userId: string = '';
+  userId!: number;
   email: string = '';
 
   constructor(private usersService: UsersService, public dialog: MatDialog) {}
@@ -24,6 +25,7 @@ export class ListUsersComponent implements OnInit {
   ngOnInit(): void {
     this.getUsersList();
   }
+
   getUsersList(): void {
     this.usersService.getAll().subscribe(
       (data) => {
@@ -51,17 +53,25 @@ export class ListUsersComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddUsersComponent, {
       width: '650px',
-      data: {},
+      data: { user_list: this.users },
     });
-    dialogRef.afterClosed().subscribe((data: string) => {
-      this.email = data;
-    });
+    dialogRef.afterClosed().subscribe((data: string) => {});
   }
 
   deleteUser(id: number): void {
     this.usersService.delete(id).subscribe(() => {
       console.log('deleted');
       this.getUsersList();
+    });
+  }
+  editDialog(id: number): void {
+    this.userId = id;
+    const dialogRef = this.dialog.open(UserDetailsComponent, {
+      width: '650px',
+      data: { user_id: this.userId, user_list: this.users },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log('Dialog closed');
     });
   }
 }

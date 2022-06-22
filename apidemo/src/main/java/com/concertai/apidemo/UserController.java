@@ -46,6 +46,14 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/get-user/{id}")
+    public UserEntity getUserbyId(@PathVariable(value = "id") Integer userId,
+            @RequestBody UserEntity userDetails) {
+        UserEntity userEntity = userRespository.findById(userId).get();
+        return userEntity;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/update-users/{id}")
     public ResponseEntity<UserEntity> updateUser(@PathVariable(value = "id") Integer userId,
             @RequestBody UserEntity userDetails) {

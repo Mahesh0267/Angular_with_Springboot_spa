@@ -1,1 +1,15 @@
-<p>user-details works!</p>
+<h1 mat-dialog-title>Edit User</h1>
+<div mat-dialog-content>
+  <div class="content" *ngIf="users.userId">
+    <form >
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input type="text" class="form-control" formControlName="username">
+      </div>
+    </form>
+  </div>
+</div>
+<hr />
+<div mat-dialog-actions class="float-right">
+  <button class="btn btn-bordred-dark waves-effect width-md waves-light" [mat-dialog-close]=""
+    cdkFocusInitial>close</button>

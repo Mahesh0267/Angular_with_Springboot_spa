@@ -25,4 +25,8 @@ export class UsersService {
   create(data: {}): Observable<any> {
     return this.http.post(rootUrl + '/create-user', data);
   }
+
+  getBYId(userId: number): Observable<any> {
+    return this.http.get(`${rootUrl + '/get-user'}/${userId}`);
+  }
 }
