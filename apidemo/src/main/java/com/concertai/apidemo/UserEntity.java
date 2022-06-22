@@ -18,7 +18,7 @@ public class UserEntity {
     @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "isactive", nullable = false)
-    private boolean isactive;
+    private boolean isactive = true;
     @Column(name = "role", nullable = false)
     private String role;
 

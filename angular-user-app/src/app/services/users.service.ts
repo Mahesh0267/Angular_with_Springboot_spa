@@ -20,7 +20,9 @@ export class UsersService {
   delete(id: string): Observable<any> {
     return this.http.delete(`${rootUrl + '/delete-user'}/${id}`);
   }
+
+  //create-user
   create(data: {}): Observable<any> {
-    return this.http.post(rootUrl, data);
+    return this.http.post(rootUrl + '/create-user', data);
   }
 }

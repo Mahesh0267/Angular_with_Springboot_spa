@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UsersService } from 'src/app/services/users.service';
 import { AlertService } from '../alerts';
@@ -40,7 +40,6 @@ export class AddUsersComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid === true) {
-      this.form.value.role = 'serviceProvider';
       if (this.isEditable) {
         // this.usersService.editUser(this.id, this.form.value).subscribe(res => {
         //   if (res['status'] === 'success') {
@@ -50,10 +49,14 @@ export class AddUsersComponent implements OnInit {
         //   }
         // });
       } else {
+        console.log(this.form.value);
+
         this.usersService.create(this.form.value).subscribe((res) => {
           if (res['status'] === 'success') {
             this.dialogRef.close(res['msg']);
+            console.log('new');
           } else {
+            console.log(res['msg']);
             this.alertService.error(res['msg']);
           }
         });
