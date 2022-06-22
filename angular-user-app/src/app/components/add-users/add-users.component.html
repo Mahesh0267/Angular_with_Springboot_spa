@@ -1,1 +1,32 @@
-<p>add-users works!</p>
+<h1 mat-dialog-title>Add User</h1>
+<div mat-dialog-content>
+  <div class="content">
+    <form>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control"  formControlName="name" placeholder="Enter full name">
+        <!-- <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['name'].hasError('required')"> Full name is
+          required!</span> -->
+      </div>
+      <div class="form-group">
+        <label for="contact_no">Contact Number</label>
+        <input type="text" class="form-control"  formControlName="contact_no" placeholder="Enter contact number">
+        <!-- <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['contact_no'].hasError('required')"> contact number is
+          required!</span> -->
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+        <!-- <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['password'].hasError('required')"> Password is
+          required!</span> -->
+      </div>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No</button>
+  <button mat-button [mat-dialog-close]="data.email" cdkFocusInitial>Yes</button>
+</div>

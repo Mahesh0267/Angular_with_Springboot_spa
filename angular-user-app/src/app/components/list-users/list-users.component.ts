@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { AddUsersComponent } from '../add-users/add-users.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-users',
@@ -12,6 +16,7 @@ export class ListUsersComponent implements OnInit {
   users: any;
   username = '';
   userId: string = '';
+  email: string = '';
 
   constructor(private usersService: UsersService, public dialog: MatDialog) {}
 
@@ -41,15 +46,14 @@ export class ListUsersComponent implements OnInit {
       }
     );
   }
-  addUserPopUp(id: string): void {
-    this.userId = id;
+
+  openDialog(): void {
     const dialogRef = this.dialog.open(AddUsersComponent, {
       width: '650px',
-      data: { userId: this.userId, user_list: this.users },
+      data: {},
     });
-    dialogRef.afterClosed().subscribe((data) => {
-      console.log('dialog closed');
-      this.users = data;
+    dialogRef.afterClosed().subscribe((data: string) => {
+      this.email = data;
     });
   }
 }
