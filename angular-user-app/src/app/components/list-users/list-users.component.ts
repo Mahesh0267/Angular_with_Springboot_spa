@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { AddUsersComponent } from '../add-users/add-users.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-users',
@@ -54,6 +55,13 @@ export class ListUsersComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data: string) => {
       this.email = data;
+    });
+  }
+
+  deleteUser(id: number): void {
+    this.usersService.delete(id).subscribe(() => {
+      console.log('deleted');
+      this.getUsersList();
     });
   }
 }

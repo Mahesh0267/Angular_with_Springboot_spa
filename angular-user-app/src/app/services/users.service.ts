@@ -17,8 +17,8 @@ export class UsersService {
     return this.http.get(`${rootUrl + '/get-user'}/${username}`);
   }
   // /delete-user/{id}
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${rootUrl + '/delete-user'}/${id}`);
+  delete(userId: number): Observable<any> {
+    return this.http.delete(`${rootUrl + '/delete-user'}/${userId}`);
   }
 
   //create-user

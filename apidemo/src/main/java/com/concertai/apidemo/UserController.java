@@ -63,7 +63,7 @@ public class UserController {
         UserEntity user = userRespository.findById(userId).get();
         userRespository.delete(user);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("isactive", Boolean.TRUE);
+        response.put("isactive", Boolean.FALSE);
         return response;
     }
 }
