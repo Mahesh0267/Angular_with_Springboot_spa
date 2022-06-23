@@ -2,6 +2,8 @@ package com.concertai.apidemo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,13 +21,14 @@ public class UserEntity {
     private String email;
     @Column(name = "isactive", nullable = false)
     private boolean isactive = true;
+    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private String role;
+    private Role role;
 
     public UserEntity() {
     }
 
-    public UserEntity(String username, String email, boolean isactive, String role) {
+    public UserEntity(String username, String email, boolean isactive, Role role) {
         this.username = username;
         this.email = email;
         this.isactive = isactive;
@@ -64,11 +67,11 @@ public class UserEntity {
         this.isactive = isactive;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
