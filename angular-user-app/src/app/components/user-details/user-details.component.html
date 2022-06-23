@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Add User</h1>
 <div mat-dialog-content>
   <div class="content">
-    <form [formGroup]="form" #formDir="ngForm">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #formDir="ngForm" >
       <div class="form-group">
         <label for="name">User Name</label>
         <input type="text" class="form-control"  formControlName="username" placeholder="Enter user name">
@@ -9,7 +9,7 @@
           *ngIf="formDir.submitted && form.controls['username'].hasError('required')"> User name is
           required!</span>
       </div>
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="contact_no">email</label>
         <input type="text" class="form-control"  formControlName="email" placeholder="Enter email">
         <span class="text-danger"
@@ -22,8 +22,8 @@
         <span class="text-danger"
           *ngIf="formDir.submitted && form.controls['role'].hasError('required')"> role is
           required!</span>
-      </div> -->
-      <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
 </div>

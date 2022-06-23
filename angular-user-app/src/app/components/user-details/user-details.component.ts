@@ -30,6 +30,7 @@ export class UserDetailsComponent implements OnInit {
       next: (data) => {
         this.user_details = data;
         console.log(this.user_details);
+        this.form.patchValue(this.user_details);
       },
       error: (e) => console.error(e),
     });
@@ -37,5 +38,16 @@ export class UserDetailsComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.usersService.update(this.data, this.form.value).subscribe({
+        next: (res) => {
+          this.dialogRef.close('update');
+        },
+        error: (e) => console.error(e),
+      });
+    }
   }
 }
