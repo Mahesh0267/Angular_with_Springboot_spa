@@ -27,6 +27,9 @@ export class UsersService {
   }
 
   getBYId(userId: number): Observable<any> {
-    return this.http.get(`${rootUrl + '/get-user'}/${userId}`);
+    return this.http.get(`${rootUrl + '/getuser'}/${userId}`);
+  }
+  update(userId: number, data: any): Observable<any> {
+    return this.http.put(`${rootUrl + '/update-users'}/${userId}`, data);
   }
 }

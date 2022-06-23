@@ -6,7 +6,6 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { AddUsersComponent } from '../add-users/add-users.component';
-import { Observable } from 'rxjs';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
@@ -53,7 +52,6 @@ export class ListUsersComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddUsersComponent, {
       width: '650px',
-      data: { user_list: this.users },
     });
     dialogRef.afterClosed().subscribe((data: string) => {});
   }
@@ -68,7 +66,7 @@ export class ListUsersComponent implements OnInit {
     this.userId = id;
     const dialogRef = this.dialog.open(UserDetailsComponent, {
       width: '650px',
-      data: { user_id: this.userId, user_list: this.users },
+      data: id,
     });
     dialogRef.afterClosed().subscribe((res) => {
       console.log('Dialog closed');

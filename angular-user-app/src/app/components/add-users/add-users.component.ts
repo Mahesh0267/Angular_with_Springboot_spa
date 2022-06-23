@@ -18,6 +18,7 @@ export class AddUsersComponent implements OnInit {
   isEditable = false;
   submitted = false;
   users: any;
+  userId!: number;
   constructor(
     private usersService: UsersService,
     private alertService: AlertService,
@@ -34,8 +35,6 @@ export class AddUsersComponent implements OnInit {
     this.usersService.getAll().subscribe(
       (data) => {
         this.users = data;
-        console.log(data);
-        console.log(typeof data);
       },
       (error) => {
         console.log(error);
@@ -56,16 +55,14 @@ export class AddUsersComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-
-    this.usersService.create(this.form.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.submitted = true;
-        this.dialogRef.close(res);
-        this.getUsersList();
-      },
-      error: (e) => console.error(e),
-    });
+    if (this.form.valid) {
+      this.usersService.create(this.form.value).subscribe({
+        next: (res) => {
+          this.form.reset();
+          this.dialogRef.close('save');
+        },
+        error: (e) => console.error(e),
+      });
+    }
   }
 }

@@ -46,9 +46,8 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/get-user/{id}")
-    public UserEntity getUserbyId(@PathVariable(value = "id") Integer userId,
-            @RequestBody UserEntity userDetails) {
+    @GetMapping("/getuser/{userId}")
+    public UserEntity getUserbyId(@PathVariable(value = "userId") Integer userId) {
         UserEntity userEntity = userRespository.findById(userId).get();
         return userEntity;
     }
