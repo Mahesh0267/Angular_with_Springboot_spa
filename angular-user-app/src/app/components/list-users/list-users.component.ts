@@ -50,10 +50,16 @@ export class ListUsersComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddUsersComponent, {
-      width: '650px',
-    });
-    dialogRef.afterClosed().subscribe((data: string) => {});
+    const dialogRef = this.dialog
+      .open(AddUsersComponent, {
+        width: '650px',
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'save') {
+          this.getUsersList();
+        }
+      });
   }
 
   deleteUser(id: number): void {
@@ -64,12 +70,17 @@ export class ListUsersComponent implements OnInit {
   }
   editDialog(id: number): void {
     this.userId = id;
-    const dialogRef = this.dialog.open(UserDetailsComponent, {
-      width: '650px',
-      data: id,
-    });
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log('Dialog closed');
-    });
+    const dialogRef = this.dialog
+      .open(UserDetailsComponent, {
+        width: '650px',
+        data: id,
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'update') {
+          this.getUsersList();
+        }
+        console.log('Dialog closed');
+      });
   }
 }
