@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const rootUrl = 'http://localhost:8090/api/user';
+const rootUrl = 'http://localhost:8090/api/test/';
 
 @Injectable({
   providedIn: 'root',
@@ -11,25 +11,25 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
-    return this.http.get(rootUrl + '/get-all-users');
+    return this.http.get(rootUrl + 'admin');
   }
-  get(username: string): Observable<any> {
-    return this.http.get(`${rootUrl + '/get-user'}/${username}`);
+  get(): Observable<any> {
+    return this.http.get(`${rootUrl + 'admin'}`);
   }
   // /delete-user/{id}
   delete(userId: number): Observable<any> {
-    return this.http.delete(`${rootUrl + '/delete-user'}/${userId}`);
+    return this.http.delete(`${rootUrl + '/admin/delete'}/${userId}`);
   }
 
   //create-user
   create(data: {}): Observable<any> {
-    return this.http.post(rootUrl + '/create-user', data);
+    return this.http.post(rootUrl + '/admin/create', data);
   }
 
   getBYId(userId: number): Observable<any> {
-    return this.http.get(`${rootUrl + '/getuser'}/${userId}`);
+    return this.http.get(`${rootUrl + '/admin'}/${userId}`);
   }
   update(userId: number, data: any): Observable<any> {
-    return this.http.put(`${rootUrl + '/update-users'}/${userId}`, data);
+    return this.http.put(`${rootUrl + '/admin'}/${userId}`, data);
   }
 }

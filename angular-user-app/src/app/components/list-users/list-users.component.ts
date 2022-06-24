@@ -38,7 +38,7 @@ export class ListUsersComponent implements OnInit {
     );
   }
   searchUser(): void {
-    this.usersService.get(this.username).subscribe(
+    this.usersService.get().subscribe(
       (data) => {
         this.users = data;
         console.log(data);
