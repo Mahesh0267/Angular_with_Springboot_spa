@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Add User</h1>
+<div mat-dialog-content>
+  <div class="content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"  #formDir="ngForm">
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input type="text" class="form-control"  formControlName="username" placeholder="Enter user name">
+        <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['username'].hasError('required')"> User name is
+          required!</span>
+      </div>
+      <div class="form-group">
+        <label for="contact_no">email</label>
+        <input type="text" class="form-control"  formControlName="email" placeholder="Enter email">
+        <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['email'].hasError('required')"> email is
+          required!</span>
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" class="form-control" formControlName="role" placeholder="Enter role">
+        <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['role'].hasError('required')"> role is
+          required!</span>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+<hr />
+<div mat-dialog-actions class="float-right">
+  <button class="btn btn-bordred-dark waves-effect width-md waves-light" [mat-dialog-close]=""
+    cdkFocusInitial>close</button>
