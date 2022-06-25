@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"  #formDir = "ngForm"  *ngIf="!isLoggedIn">
+      <div class = "form-group">
+        <label for="name">Username</label>
+      <input type="text" class="form-control" formControlName="username" placeholder="Enter Username">
+      <div class="alert alert-danger" role="alert"
+          *ngIf="formDir.submitted && form.controls['username'].hasError('required')"> User name is
+          required!</div>
+      </div>
+      <div class = "form-group">
+        <label for="name">Password</label>
+      <input type="text" class="form-control" formControlName="password" placeholder="Enter Password">
+      <div class="alert alert-danger" role="alert"
+          *ngIf="formDir.submitted && form.controls['password'].hasError('required')&&form.controls['password'].invalid"> Password is
+          required!</div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          Login
+        </button>
+      </div>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="formDir.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+  </div>
+</div>
