@@ -8,10 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 // import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { CommonModule } from '@angular/common';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 // import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 // import { BoardUserComponent } from './board-user/board-user.component';
 
@@ -20,7 +20,6 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     LoginComponent,
     // RegisterComponent,
-    HomeComponent,
     // ProfileComponent,
     BoardAdminComponent,
     // BoardModeratorComponent,
@@ -35,7 +34,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     CommonModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

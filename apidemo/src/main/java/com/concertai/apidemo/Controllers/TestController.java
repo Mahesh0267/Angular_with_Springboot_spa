@@ -49,23 +49,17 @@ public class TestController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> adminAccess(@RequestParam(required = false) String username) {
-        try {
-            List<User> Users = new ArrayList<User>();
+    public List<User> getAllUser() {
+        List<User> allUserlist = userRespository.findAll();
+        return allUserlist;
+    }
 
-            if (username == null)
-                userRespository.findAll().forEach(Users::add);
-            else
-                userRespository.findByUsernameContaining(username).forEach(Users::add);
-
-            if (Users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(Users, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/get-user/{username}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<User> getUserbyname(@PathVariable(value = "username") String username) {
+        List<User> userEntity = userRespository.findByUsernameContaining(username);
+        return userEntity;
     }
 
     @GetMapping("/admin/{id}")

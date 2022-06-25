@@ -7,16 +7,31 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./board-admin.component.css'],
 })
 export class BoardAdminComponent implements OnInit {
-  content!: string;
+  users: any;
+  username = '';
+  userId!: number;
+  email: string = '';
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getAdminBoard().subscribe(
+    this.userService.getAll().subscribe(
       (data) => {
-        this.content = data;
+        this.users = data;
       },
       (err) => {
-        this.content = JSON.parse(err.error).message;
+        console.log(err);
+      }
+    );
+  }
+  searchUser(): void {
+    this.userService.get(this.username).subscribe(
+      (data) => {
+        this.users = data;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }
