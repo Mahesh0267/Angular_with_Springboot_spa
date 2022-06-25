@@ -40,7 +40,7 @@
           <td>{{ user.role }}</td>
           <td>
             <div class="buttons">
-              <button mat-raised-button  class="btn btn-primary">Edit</button>
+              <button mat-raised-button (click)="editDialog(user.id)" class="btn btn-primary">Edit</button>
               <button class="btn btn-danger" >Delete</button>
          </div> 
           </td>

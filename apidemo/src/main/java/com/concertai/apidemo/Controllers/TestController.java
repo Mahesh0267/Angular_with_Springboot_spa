@@ -54,6 +54,7 @@ public class TestController {
         return allUserlist;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/get-user/{username}")
     @PreAuthorize("hasRole('ADMIN')")
     public List<User> getUserbyname(@PathVariable(value = "username") String username) {
@@ -61,6 +62,7 @@ public class TestController {
         return userEntity;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/get-user-info/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> getuseById(@PathVariable("id") Long id) {

@@ -19,7 +19,7 @@ export class UserService {
   }
 
   getBYId(userId: number): Observable<any> {
-    return this.http.get(`${rootUrl + '/get-user-info'}/${userId}`);
+    return this.http.get(`${rootUrl + 'get-user-info'}/${userId}`);
   }
 
   // getUserBoard(): Observable<any> {
