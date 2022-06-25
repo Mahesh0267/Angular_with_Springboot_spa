@@ -14,6 +14,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { CommonModule } from '@angular/common';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { AddUsersComponent } from './add-users/add-users.component';
 // import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 // import { BoardUserComponent } from './board-user/board-user.component';
 
@@ -25,6 +26,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     // ProfileComponent,
     BoardAdminComponent,
     UserDetailsComponent,
+    AddUsersComponent,
     // BoardModeratorComponent,
     // BoardUserComponent,
   ],

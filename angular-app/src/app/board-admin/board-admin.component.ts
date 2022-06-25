@@ -6,6 +6,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { AddUsersComponent } from '../add-users/add-users.component';
 
 @Component({
   selector: 'app-board-admin',
@@ -33,6 +34,19 @@ export class BoardAdminComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog
+      .open(AddUsersComponent, {
+        width: '650px',
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'save') {
+          this.getUsersList();
+        }
+      });
   }
   searchUser(): void {
     this.userService.get(this.username).subscribe(

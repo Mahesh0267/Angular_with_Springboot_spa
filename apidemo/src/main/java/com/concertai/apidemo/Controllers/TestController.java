@@ -75,7 +75,8 @@ public class TestController {
         }
     }
 
-    @PostMapping("/admin/create")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/create")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> create(@RequestBody User user) {
         try {
