@@ -18,6 +18,10 @@ export class UserService {
     return this.http.get(`${rootUrl + 'get-user'}/${username}`);
   }
 
+  getBYId(userId: number): Observable<any> {
+    return this.http.get(`${rootUrl + '/get-user-info'}/${userId}`);
+  }
+
   // getUserBoard(): Observable<any> {
   //   return this.http.get(API_URL + 'user', { responseType: 'text' });
   // }

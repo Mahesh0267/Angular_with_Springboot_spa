@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 import { UserService } from '../_services/user.service';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-board-admin',
@@ -12,9 +18,13 @@ export class BoardAdminComponent implements OnInit {
   userId!: number;
   email: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.getUsersList();
+  }
+
+  getUsersList(): void {
     this.userService.getAll().subscribe(
       (data) => {
         this.users = data;
@@ -34,5 +44,20 @@ export class BoardAdminComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  editDialog(id: number): void {
+    this.userId = id;
+    const dialogRef = this.dialog
+      .open(UserDetailsComponent, {
+        width: '650px',
+        data: id,
+      })
+      .afterClosed()
+      .subscribe((val) => {
+        if (val === 'update') {
+          this.getUsersList();
+        }
+        console.log('Dialog closed');
+      });
   }
 }
