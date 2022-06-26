@@ -102,8 +102,9 @@ public class TestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @DeleteMapping("/admin/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id) {
         try {
             userRespository.deleteById(id);

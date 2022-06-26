@@ -37,11 +37,16 @@
         <tr>
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.role }}</td>
+          <td>
+            <div *ngFor="let role of roles; let i = index" >
+              {{role.name}}
+            </div>
+          </td>
+         
           <td>
             <div class="buttons">
               <button mat-raised-button (click)="editDialog(user.id)" class="btn btn-primary">Edit</button>
-              <button class="btn btn-danger" >Delete</button>
+              <button class="btn btn-danger" (click)="deleteUser(user.id)" >Delete</button>
          </div> 
           </td>
         </tr>

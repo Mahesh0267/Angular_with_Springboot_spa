@@ -22,6 +22,12 @@ export class UserService {
     return this.http.get(`${rootUrl + 'get-user-info'}/${userId}`);
   }
 
+  create(data: {}): Observable<any> {
+    return this.http.post(rootUrl + 'create', data);
+  }
+  delete(userId: number): Observable<any> {
+    return this.http.delete(`${rootUrl + 'delete'}/${userId}`);
+  }
   // getUserBoard(): Observable<any> {
   //   return this.http.get(API_URL + 'user', { responseType: 'text' });
   // }
