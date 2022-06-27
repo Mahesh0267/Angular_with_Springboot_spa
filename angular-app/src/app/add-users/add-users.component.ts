@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
 
 interface DialogData {
@@ -22,6 +23,7 @@ export class AddUsersComponent implements OnInit {
   dropdownSettings;
   constructor(
     private usersService: UserService,
+    private authService: AuthService,
     public dialogRef: MatDialogRef<AddUsersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
@@ -54,8 +56,9 @@ export class AddUsersComponent implements OnInit {
     this.form = new FormGroup({
       username: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
-      // role: new FormControl('', Validators.required),
+     
     });
 
     if (this.isEditable) {
@@ -69,9 +72,13 @@ export class AddUsersComponent implements OnInit {
 
   getData(): Array<any> {
     return [
-      { id: 1, name: 'User' },
-      { id: 2, name: 'Admin' },
+      { id: 1, name: 'user' },
+      { id: 2, name: 'admin' },
     ];
+  }
+  handleButtonClick(){
+    console.log('reactive form value ', this.form.value);
+    console.log('Actual data ', this.getObjectListFromData(this.form.value.role.map(item => item.item_id)));
   }
 
   getObjectListFromData(ids) {
@@ -92,13 +99,21 @@ export class AddUsersComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.usersService.create(this.form.value).subscribe({
-        next: (res) => {
+
+      this.authService.register(this.form.value).subscribe(
+        data => {
+          console.log(data);
           this.form.reset();
           this.dialogRef.close('save');
         },
-        error: (e) => console.error(e),
-      });
-    }
+        err => {
+          console.error(err)
+        }
+      );
+     
   }
+
+}
+
+
 }

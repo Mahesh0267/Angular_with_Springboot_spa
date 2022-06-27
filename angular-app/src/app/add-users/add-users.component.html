@@ -17,6 +17,13 @@
           required!</span>
       </div>
       <div class="form-group">
+        <label for="contact_no">password</label>
+        <input type="text" class="form-control"  formControlName="password" placeholder="Enter password">
+        <span class="text-danger"
+          *ngIf="formDir.submitted && form.controls['password'].hasError('required')"> email is
+          required!</span>
+      </div>
+      <div class="form-group">
         <label for="role">Role</label>
         <div style="width:50%">
           <ng-multiselect-dropdown formControlName="role"

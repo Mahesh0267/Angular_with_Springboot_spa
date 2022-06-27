@@ -31,7 +31,7 @@ export class BoardAdminComponent implements OnInit {
     this.userService.getAll().subscribe(
       (data) => {
         this.users = data;
-        
+        console.log(this.users);
         for (let i = 0; i < data.length; i++) {
           this.roles = this.users[i].roles;
           console.log(this.roles);
