@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Add User</h1>
 <div mat-dialog-content>
   <div class="content">
-    <form [formGroup]="form"  #formDir="ngForm" >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" #formDir="ngForm" >
       <div class="form-group">
         <label for="name">User Name</label>
         <input type="text" class="form-control"  formControlName="username" placeholder="Enter user name">

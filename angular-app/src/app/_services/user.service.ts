@@ -8,6 +8,9 @@ const rootUrl = 'http://localhost:8090/api/test/';
   providedIn: 'root',
 })
 export class UserService {
+  register(value: any) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<any> {
@@ -27,6 +30,10 @@ export class UserService {
   }
   delete(userId: number): Observable<any> {
     return this.http.delete(`${rootUrl + 'delete'}/${userId}`);
+  }
+
+  update(userId: number, data: any): Observable<any> {
+    return this.http.put(`${rootUrl + 'update'}/${userId}`, data);
   }
   // getUserBoard(): Observable<any> {
   //   return this.http.get(API_URL + 'user', { responseType: 'text' });

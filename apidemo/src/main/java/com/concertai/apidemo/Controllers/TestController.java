@@ -87,7 +87,8 @@ public class TestController {
         }
     }
 
-    @PutMapping("/admin/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/update/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> update(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> userData = userRespository.findById(id);
@@ -96,7 +97,6 @@ public class TestController {
             User _user = userData.get();
             _user.setUsername(user.getUsername());
             _user.setEmail(user.getEmail());
-            _user.setRoles(user.getRoles());
             return new ResponseEntity<>(userRespository.save(_user), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

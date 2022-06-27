@@ -19,7 +19,7 @@ export class UserDetailsComponent implements OnInit {
   dropdownSettings;
 
   constructor(
-    private usersService: UserService,
+    private userService: UserService,
     private authService: AuthService,
     public dialogRef: MatDialogRef<UserDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -33,7 +33,7 @@ export class UserDetailsComponent implements OnInit {
       email: new FormControl('', Validators.required),
       role: new FormControl('',Validators.required)
     });
-    this.usersService.getBYId(this.data).subscribe({
+    this.userService.getBYId(this.data).subscribe({
       next: (data) => {
         this.user_details = data;
         for (let i = 0; i < data.length; i++) {
@@ -52,13 +52,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.authService.register(this.form.value).subscribe({
+      this.userService.update(this.data, this.form.value).subscribe({
         next: (res) => {
           this.dialogRef.close('update');
         },
         error: (e) => console.error(e),
       });
-    }
   }
 }
